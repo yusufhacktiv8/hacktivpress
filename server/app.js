@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const usersRoute = require('./routes/user');
+const articlesRoute = require('./routes/article');
 
 const MONGODB_URL = 'mongodb://localhost:27017/yusufhacktivpress';
 
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api/users', usersRoute);
+app.use('/api/articles', articlesRoute);
 
 mongoose.connect(MONGODB_URL);
 const db = mongoose.connection;
