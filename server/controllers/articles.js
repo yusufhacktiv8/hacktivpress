@@ -47,3 +47,18 @@ exports.update = (req, res) => {
     });
   });
 };
+
+exports.delete = (req, res) => {
+  const artileId = req.params.id;
+  Article.findOne({
+    _id: artileId,
+  }, (err, foundArticle) => {
+    foundArticle.remove((removeErr) => {
+      if (!removeErr) {
+        res.json({ status: 'OK' });
+      } else {
+        res.status(500).send('error');
+      }
+    });
+  });
+};
