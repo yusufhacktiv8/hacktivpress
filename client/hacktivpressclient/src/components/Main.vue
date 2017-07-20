@@ -29,6 +29,11 @@ export default {
       msg: 'Welcome to Your Vue.js App',
     };
   },
+  mounted() {
+    if (!sessionStorage.getItem('token')) {
+      this.$router.push({ path: '/signin' });
+    }
+  },
 };
 </script>
 
