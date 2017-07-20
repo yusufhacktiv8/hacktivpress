@@ -1,26 +1,19 @@
 <template>
   <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">Panel heading without title</div>
-        <div class="panel-body">
-          Sign In
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Panel title</h3>
-        </div>
-        <div class="panel-body">
-          Panel content
-        </div>
-      </div>
+    <div class="col-md-8 col-md-offset-2">
+      <ul class="list-group">
+        <li class="list-group-item" v-for="article in articles">
+          {{ article.title }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+
+import { mapState } from 'vuex';
+
 export default {
   name: 'ArticleList',
   data() {
@@ -28,6 +21,10 @@ export default {
       msg: 'Welcome to Your Vue.js App',
     };
   },
+  mounted() {
+    this.$store.dispatch('getArticles');
+  },
+  computed: mapState(['articles']),
 };
 </script>
 

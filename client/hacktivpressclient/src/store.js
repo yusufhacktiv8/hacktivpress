@@ -15,15 +15,15 @@ export default new Vuex.Store({
   },
   actions: {
     getArticles({ commit }) {
-      axios.get('/api/articles', {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-        },
+      axios.get('http://localhost:3000/api/articles', {
+        // headers: {
+        //   Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        // },
       })
       .then((response) => {
         commit('loadArticles', response.data);
       })
-      .cathc((error) => {
+      .catch((error) => {
         console.log(error);
       });
     },
