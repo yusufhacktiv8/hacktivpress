@@ -10,7 +10,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Logout</a></li>
+            <li>
+              <button type="button" class="btn btn-default" @click="logout" style="margin-top: 7px;">Logout</button>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -28,6 +30,12 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
     };
+  },
+  methods: {
+    logout() {
+      sessionStorage.removeItem('token');
+      this.$router.push({ path: '/signin' });
+    },
   },
   mounted() {
     if (!sessionStorage.getItem('token')) {
