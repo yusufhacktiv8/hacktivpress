@@ -11,6 +11,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li>
+              <button type="button" class="btn btn-success" @click="newArticle" style="margin-top: 7px; margin-right: 10px;">New Article</button>
+            </li>
+            <li>
               <button type="button" class="btn btn-default" @click="logout" style="margin-top: 7px;">Logout</button>
             </li>
           </ul>
@@ -35,6 +38,9 @@ export default {
     logout() {
       sessionStorage.removeItem('token');
       this.$router.push({ path: '/signin' });
+    },
+    newArticle() {
+      this.$router.push({ path: '/newarticle' });
     },
   },
   mounted() {
