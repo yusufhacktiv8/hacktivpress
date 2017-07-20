@@ -26,3 +26,24 @@ exports.findOne = (req, res) => {
     res.json(article);
   });
 };
+
+exports.update = (req, res) => {
+  const artileId = req.params.id;
+  const articleForm = req.body;
+  Article.findOne({
+    _id: artileId,
+  }, (err, foundArticle) => {
+    foundArticle.title = articleForm.title;
+    foundArticle.content = articleForm.content;
+    foundArticle.category = articleForm.category;
+    foundArticle.author = articleForm.author;
+
+    foundArticle.save((saveErr) => {
+      if (!saveErr) {
+        res.json({ status: 'OK' });
+      } else {
+        res.status(500).send('error');
+      }
+    });
+  });
+};
